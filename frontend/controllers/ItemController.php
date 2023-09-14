@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * ItemController implements the CRUD actions for Item model.
@@ -17,6 +18,23 @@ class ItemController extends Controller
     /**
      * @inheritDoc
      */
+
+    // TODO: Minggu 4 Latihan
+    public function beforeAction($action) {
+        if($action->id === 'index' || $action->id === 'view') {
+            $stat = new \app\models\Statistics();
+            $stat->access_time = Yii::$app->formatter->asDatetime('now', 'php:Y-m-d H:i:s');
+            $stat->user_ip = Yii::$app->request->userIP;
+            $stat->user_host = Yii::$app->request->userHost;
+            $stat->path_info = Yii::$app->request->pathInfo;
+            $stat->query_string = Yii::$app->request->queryString;
+
+            $stat->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function behaviors()
     {
         return array_merge(
@@ -52,6 +70,8 @@ class ItemController extends Controller
             ],
             */
         ]);
+
+
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
