@@ -19,7 +19,7 @@ class m230914_014615_create_statistics_table extends Migration
             'user_ip' => $this->string(20),
             'user_host' => $this->string(50),
             'path_info' => $this->string(50),
-            'query_string'=> $this->string(50)
+            'query_string'=> $this->string(50),
         ]);
     }
 

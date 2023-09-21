@@ -16,6 +16,11 @@ return [
     // TODO: Week 3 Latihan 1
     'defaultRoute'  => 'item/index',
     'components' => [
+        // TODO: Week 5 Latihan
+        'ItemComponent' => [
+            'class' => 'frontend\components\ItemComponent',
+            'on itemLogging' => ['frontend\components\ItemComponent', 'itemLoggingHandler'],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

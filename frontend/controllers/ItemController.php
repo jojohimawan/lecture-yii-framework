@@ -22,14 +22,16 @@ class ItemController extends Controller
     // TODO: Minggu 4 Latihan
     public function beforeAction($action) {
         if($action->id === 'index' || $action->id === 'view') {
-            $stat = new \app\models\Statistics();
-            $stat->access_time = Yii::$app->formatter->asDatetime('now', 'php:Y-m-d H:i:s');
-            $stat->user_ip = Yii::$app->request->userIP;
-            $stat->user_host = Yii::$app->request->userHost;
-            $stat->path_info = Yii::$app->request->pathInfo;
-            $stat->query_string = Yii::$app->request->queryString;
+            // TODO: Minggu 5 Latihan
+            Yii::$app->ItemComponent->trigger(\frontend\components\ItemComponent::EVENT_ITEM_LOGGING);
+            // $stat = new \app\models\Statistics();
+            // $stat->access_time = Yii::$app->formatter->asDatetime('now', 'php:Y-m-d H:i:s');
+            // $stat->user_ip = Yii::$app->request->userIP;
+            // $stat->user_host = Yii::$app->request->userHost;
+            // $stat->path_info = Yii::$app->request->pathInfo;
+            // $stat->query_string = Yii::$app->request->queryString;
 
-            $stat->save();
+            // $stat->save();
             return true;
         } else {
             return false;
