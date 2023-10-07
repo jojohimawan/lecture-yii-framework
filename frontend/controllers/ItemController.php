@@ -3,7 +3,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Item;
+use backend\models\Item;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -59,25 +59,32 @@ class ItemController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Item::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
-        ]);
-
-
+        // TODO: Minggu 7 Latihan 1
+        $items = Item::find()->all(); // Assuming you're using Active Record to fetch items
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'items' => $items, // Passing the items to the view
         ]);
+
+        // $dataProvider = new ActiveDataProvider([
+        //     'query' => Item::find(),
+        //     /*
+        //     'pagination' => [
+        //         'pageSize' => 50
+        //     ],
+        //     'sort' => [
+        //         'defaultOrder' => [
+        //             'id' => SORT_DESC,
+        //         ]
+        //     ],
+        //     */
+        // ]);
+
+
+
+        // return $this->render('index', [
+        //     'dataProvider' => $dataProvider,
+        // ]);
     }
 
     /**
